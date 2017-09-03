@@ -43,8 +43,10 @@ public class EchoServer {
                 .channel(NioServerSocketChannel.class)
                 .localAddress(new InetSocketAddress(port))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
+                    // 新的连接接受时，会创建一个新的channel，注意类名ChannelInitializer
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
+                        // 业务分离，server处理器
                         ch.pipeline().addLast(serverHandler);
                     }
                 });

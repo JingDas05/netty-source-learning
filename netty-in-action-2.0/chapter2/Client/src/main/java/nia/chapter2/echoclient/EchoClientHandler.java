@@ -31,6 +31,7 @@ public class EchoClientHandler
     public void exceptionCaught(ChannelHandlerContext ctx,
         Throwable cause) {
         cause.printStackTrace();
+        // 关闭channel
         ctx.close();
     }
 }
