@@ -10,7 +10,7 @@
         <version>9</version>
     </parent>
 
-    <groupId>top.treegrowth</groupId>
+    <groupId>io.netty</groupId>
     <artifactId>netty-source-learning</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -18,10 +18,21 @@
 
     <modules>
         <module>netty-netty-4.1.15Final</module>
+        <module>netty-in-action-2.0</module>
     </modules>
 
     <dependencyManagement>
-
+        <dependencies>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-parent</artifactId>
+                <version>4.1.15.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>nia-samples-parent</artifactId>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
 </project>

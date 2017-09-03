@@ -5,7 +5,7 @@
 
     <!-- We don't declare the parent to avoid a circular reference -->
     <version>2.0-SNAPSHOT</version>
-    <groupId>nia</groupId>
+    <groupId>io.netty</groupId>
     <artifactId>utils</artifactId>
     <name>Common Utilities</name>
 

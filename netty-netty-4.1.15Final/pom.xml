@@ -21,12 +21,12 @@
     <!--<groupId>org.sonatype.oss</groupId>-->
     <!--<artifactId>oss-parent</artifactId>-->
     <!--<version>9</version>-->
-    <groupId>top.treegrowth</groupId>
+    <groupId>io.netty</groupId>
     <artifactId>netty-source-learning</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>io.netty</groupId>
+  <!--<groupId>io.netty</groupId>-->
   <artifactId>netty-parent</artifactId>
   <packaging>pom</packaging>
   <version>4.1.15.Final</version>
@@ -196,12 +196,13 @@
     <os.detection.classifierWithLikes>fedora</os.detection.classifierWithLikes>
     <tcnative.artifactId>netty-tcnative</tcnative.artifactId>
     <tcnative.version>2.0.6.Final</tcnative.version>
-    <tcnative.classifier>${os.detected.classifier}</tcnative.classifier>
+    <!--解决pom报错问题，注释掉了-->
+    <!--<tcnative.classifier>${os.detected.classifier}</tcnative.classifier>-->
     <conscrypt.groupId>org.conscrypt</conscrypt.groupId>
     <conscrypt.artifactId>conscrypt-openjdk-uber</conscrypt.artifactId>
     <conscrypt.version>1.0.0.RC9</conscrypt.version>
     <conscrypt.classifier />
-    <jni.classifier>${os.detected.name}-${os.detected.arch}</jni.classifier>
+    <!--<jni.classifier>${os.detected.name}-${os.detected.arch}</jni.classifier>-->
     <logging.config>${project.basedir}/../common/src/test/resources/logback-test.xml</logging.config>
     <logging.logLevel>debug</logging.logLevel>
     <log4j2.version>2.6.2</log4j2.version>

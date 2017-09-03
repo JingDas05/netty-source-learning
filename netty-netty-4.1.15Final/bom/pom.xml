@@ -23,7 +23,7 @@
     <relativePath />
   </parent>
 
-  <groupId>io.netty</groupId>
+  <groupId>top.treegrowth</groupId>
   <artifactId>netty-bom</artifactId>
   <version>4.1.15.Final</version>
   <packaging>pom</packaging>
