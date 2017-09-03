@@ -28,6 +28,9 @@ import java.net.SocketAddress;
 
 
 /**
+ *
+ * 基本的IO操作
+ *
  * A nexus to a network socket or a component which is capable of I/O
  * operations such as read, write, connect, and bind.
  * <p>
@@ -36,6 +39,7 @@ import java.net.SocketAddress;
  * <li>the current state of the channel (e.g. is it open? is it connected?),</li>
  * <li>the {@linkplain ChannelConfig configuration parameters} of the channel (e.g. receive buffer size),</li>
  * <li>the I/O operations that the channel supports (e.g. read, write, connect, and bind), and</li>
+ * 提供了 ChannelPipeline， 可以处理所有的IO事件和请求
  * <li>the {@link ChannelPipeline} which handles all I/O events and requests
  *     associated with the channel.</li>
  * </ul>

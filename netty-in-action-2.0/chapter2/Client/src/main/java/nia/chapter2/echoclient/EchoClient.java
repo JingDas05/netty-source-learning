@@ -29,6 +29,7 @@ public class EchoClient {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
+            // 下面是建造者模式，添加属性，返回对象还是 Bootstrap
             b.group(group)
                 .channel(NioSocketChannel.class)
                 .remoteAddress(new InetSocketAddress(host, port))
