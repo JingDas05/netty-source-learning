@@ -18,7 +18,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>top.treegrowth</groupId>
+    <groupId>io.netty</groupId>
     <artifactId>netty-parent</artifactId>
     <version>4.1.15.Final</version>
   </parent>
