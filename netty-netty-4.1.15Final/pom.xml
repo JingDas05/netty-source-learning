@@ -252,6 +252,13 @@
 
   <dependencyManagement>
     <dependencies>
+      <!--为了能用依赖添加子模块名字-->
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-transport</artifactId>
+        <version>4.1.15.Final</version>
+      </dependency>
+
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>netty-dev-tools</artifactId>
