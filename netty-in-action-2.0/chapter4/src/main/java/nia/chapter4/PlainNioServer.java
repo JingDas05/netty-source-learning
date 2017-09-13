@@ -20,14 +20,17 @@ public class PlainNioServer {
     public void serve(int port) throws IOException {
         ServerSocketChannel serverChannel = ServerSocketChannel.open();
         serverChannel.configureBlocking(false);
+        // 绑定端口
         ServerSocket ss = serverChannel.socket();
         InetSocketAddress address = new InetSocketAddress(port);
         ss.bind(address);
+        // 将serverChannel 注册到 Selector上
         Selector selector = Selector.open();
         serverChannel.register(selector, SelectionKey.OP_ACCEPT);
         final ByteBuffer msg = ByteBuffer.wrap("Hi!\r\n".getBytes());
         for (;;){
             try {
+                // 等待需要处理的新事件
                 selector.select();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -40,6 +43,7 @@ public class PlainNioServer {
                 SelectionKey key = iterator.next();
                 iterator.remove();
                 try {
+                    // 连接就绪，接受客户端，将它注册到选择器
                     if (key.isAcceptable()) {
                         ServerSocketChannel server =
                                 (ServerSocketChannel) key.channel();
@@ -50,6 +54,7 @@ public class PlainNioServer {
                         System.out.println(
                                 "Accepted connection from " + client);
                     }
+                    // 将数据写到已连接的客户端
                     if (key.isWritable()) {
                         SocketChannel client =
                                 (SocketChannel) key.channel();

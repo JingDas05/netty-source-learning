@@ -17,10 +17,10 @@ import java.nio.charset.Charset;
  * @author <a href="mailto:norman.maurer@gmail.com">Norman Maurer</a>
  */
 public class NettyOioServer {
-    public void server(int port)
-            throws Exception {
+    public void server(int port) throws Exception {
         final ByteBuf buf =
                 Unpooled.unreleasableBuffer(Unpooled.copiedBuffer("Hi!\r\n", Charset.forName("UTF-8")));
+        // 允许阻塞模式
         EventLoopGroup group = new OioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
@@ -44,6 +44,7 @@ public class NettyOioServer {
                                     });
                         }
                     });
+            // 绑定服务器，接受连接
             ChannelFuture f = b.bind().sync();
             f.channel().closeFuture().sync();
         } finally {

@@ -52,6 +52,8 @@ import java.net.SocketAddress;
  * a {@link ChannelFuture} instance which will notify you when the requested I/O
  * operation has succeeded, failed, or canceled.
  *
+ * 所有的IO都是异步的，立即返回ChannelFuture对象
+ *
  * <h3>Channels are hierarchical</h3>
  * <p>
  * A {@link Channel} can have a {@linkplain #parent() parent} depending on
@@ -59,6 +61,7 @@ import java.net.SocketAddress;
  * by {@link ServerSocketChannel}, will return the {@link ServerSocketChannel}
  * as its parent on {@link #parent()}.
  * <p>
+ *     SocketChannel 的 parent 是 ServerSocketChannel
  * The semantics of the hierarchical structure depends on the transport
  * implementation where the {@link Channel} belongs to.  For example, you could
  * write a new {@link Channel} implementation that creates the sub-channels that
