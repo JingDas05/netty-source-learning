@@ -15,6 +15,7 @@ public class LineBasedHandlerInitializer extends ChannelInitializer<Channel>
     protected void initChannel(Channel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast(new LineBasedFrameDecoder(64 * 1024));
+        // 添加 FrameHandler 接收帧
         pipeline.addLast(new FrameHandler());
     }
 

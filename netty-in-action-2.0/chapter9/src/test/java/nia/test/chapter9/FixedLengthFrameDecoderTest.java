@@ -20,11 +20,13 @@ public class FixedLengthFrameDecoderTest {
         for (int i = 0; i < 9; i++) {
             buf.writeByte(i);
         }
+        // 复制 ByteBuf
         ByteBuf input = buf.duplicate();
         EmbeddedChannel channel = new EmbeddedChannel(
             new FixedLengthFrameDecoder(3));
         // write bytes
         assertTrue(channel.writeInbound(input.retain()));
+        // 判断是否完成
         assertTrue(channel.finish());
 
         // read messages
@@ -60,6 +62,7 @@ public class FixedLengthFrameDecoderTest {
         assertTrue(channel.finish());
         ByteBuf read = (ByteBuf) channel.readInbound();
         assertEquals(buf.readSlice(3), read);
+        // 释放方法，很重要
         read.release();
 
         read = (ByteBuf) channel.readInbound();

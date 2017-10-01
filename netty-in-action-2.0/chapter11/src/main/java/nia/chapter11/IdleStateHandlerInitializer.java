@@ -32,11 +32,14 @@ public class IdleStateHandlerInitializer extends ChannelInitializer<Channel>
         @Override
         public void userEventTriggered(ChannelHandlerContext ctx,
             Object evt) throws Exception {
+            // 如果 IdleStateHandler被触发时， 发送一个 IdleStateEvent
             if (evt instanceof IdleStateEvent) {
+                // 如果是IdleStateEvent， 发送心跳
                 ctx.writeAndFlush(HEARTBEAT_SEQUENCE.duplicate())
                      .addListener(
                          ChannelFutureListener.CLOSE_ON_FAILURE);
             } else {
+                // 如果不是的话，交给下一个 ChannelInboundHandler
                 super.userEventTriggered(ctx, evt);
             }
         }

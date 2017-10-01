@@ -19,6 +19,7 @@ public class FrameChunkDecoder extends ByteToMessageDecoder {
         this.maxFrameSize = maxFrameSize;
     }
 
+    // 如果可读长度大于最大允许长度，抛出异常
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in,
         List<Object> out)
@@ -29,6 +30,7 @@ public class FrameChunkDecoder extends ByteToMessageDecoder {
             in.clear();
             throw new TooLongFrameException();
         }
+        // 全部读取，添加到解码列表中
         ByteBuf buf = in.readBytes(readableBytes);
         out.add(buf);
     }

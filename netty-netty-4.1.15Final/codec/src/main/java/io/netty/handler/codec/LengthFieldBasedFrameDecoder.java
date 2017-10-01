@@ -23,6 +23,8 @@ import java.nio.ByteOrder;
 import java.util.List;
 
 /**
+ * 根据编码进帧头部中的长度值提取帧
+ *
  * A decoder that splits the received {@link ByteBuf}s dynamically by the
  * value of the length field in the message.  It is particularly useful when you
  * decode a binary message which has an integer header field that represents the

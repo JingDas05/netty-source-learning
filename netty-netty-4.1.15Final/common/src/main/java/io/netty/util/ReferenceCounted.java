@@ -60,7 +60,7 @@ public interface ReferenceCounted {
     ReferenceCounted touch(Object hint);
 
     /**
-     * Decreases the reference count by {@code 1} and deallocates this object if the reference count reaches at
+     * Decreases减 the reference count by {@code 1} and deallocates 重新分配 this object if the reference count reaches at
      * {@code 0}.
      *
      * @return {@code true} if and only if the reference count became {@code 0} and this object has been deallocated

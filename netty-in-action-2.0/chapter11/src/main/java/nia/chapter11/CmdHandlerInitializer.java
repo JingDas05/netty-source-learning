@@ -44,12 +44,14 @@ public class CmdHandlerInitializer extends ChannelInitializer<Channel> {
         @Override
         protected Object decode(ChannelHandlerContext ctx, ByteBuf buffer)
             throws Exception {
+            // 对于一个ByteBuf来说，readerIndex 到 writerIndex之间的数据就是可读的
             ByteBuf frame = (ByteBuf) super.decode(ctx, buffer);
             if (frame == null) {
                 return null;
             }
             int index = frame.indexOf(frame.readerIndex(),
                     frame.writerIndex(), SPACE);
+            // 根据SPACE 进行切割，存储名字和参数
             return new Cmd(frame.slice(frame.readerIndex(), index),
                     frame.slice(index + 1, frame.writerIndex()));
         }

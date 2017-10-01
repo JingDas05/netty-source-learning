@@ -24,6 +24,7 @@ public class AbsIntegerEncoderTest {
         EmbeddedChannel channel = new EmbeddedChannel(
             new AbsIntegerEncoder());
         assertTrue(channel.writeOutbound(buf));
+        // 标记已完成，很重要
         assertTrue(channel.finish());
 
         // read bytes

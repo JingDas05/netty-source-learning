@@ -17,6 +17,7 @@ import java.util.List;
 public class WebSocketConvertHandler extends
      MessageToMessageCodec<WebSocketFrame,
      WebSocketConvertHandler.MyWebSocketFrame> {
+    // 编码是将 WebSocketConvertHandler.MyWebSocketFrame 转换成 WebSocketFrame
      @Override
      protected void encode(ChannelHandlerContext ctx,
          WebSocketConvertHandler.MyWebSocketFrame msg,
@@ -46,6 +47,7 @@ public class WebSocketConvertHandler extends
                      "Unsupported websocket msg " + msg);}
     }
 
+    // 编码是将 WebSocketFrame 转换成 WebSocketConvertHandler.MyWebSocketFrame
     @Override
     protected void decode(ChannelHandlerContext ctx, WebSocketFrame msg,
         List<Object> out) throws Exception {
@@ -81,6 +83,7 @@ public class WebSocketConvertHandler extends
     }
 
     public static final class MyWebSocketFrame {
+         // 定义了一个类型
         public enum FrameType {
             BINARY,
             CLOSE,
