@@ -12,6 +12,24 @@
     <artifactId>chapter13</artifactId>
     <name>Chapter 13. Broadcasting Events with UDP</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-buffer</artifactId>
+            <version>4.1.15.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport</artifactId>
+            <version>4.1.15.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec</artifactId>
+            <version>4.1.15.Final</version>
+        </dependency>
+    </dependencies>
+
     <profiles>
         <profile>
             <id>LogEventBroadcaster</id>
@@ -66,4 +84,6 @@
             </build>
         </profile>
     </profiles>
+
+
 </project>
