@@ -23,10 +23,10 @@ public class EchoServer {
     }
 
     public static void main(String[] args)
-        throws Exception {
+            throws Exception {
         if (args.length != 1) {
             System.err.println("Usage: " + EchoServer.class.getSimpleName() +
-                " <port>"
+                    " <port>"
             );
             return;
         }
@@ -35,27 +35,28 @@ public class EchoServer {
     }
 
     public void start() throws Exception {
-        final EchoServerHandler serverHandler = new EchoServerHandler();
+        final EchoServerChannelHandler serverHandler = new EchoServerChannelHandler();
         EventLoopGroup group = new NioEventLoopGroup();
         try {
-            ServerBootstrap b = new ServerBootstrap();
-            b.group(group)
-                .channel(NioServerSocketChannel.class)
-                .localAddress(new InetSocketAddress(port))
-                .childHandler(new ChannelInitializer<SocketChannel>() {
-                    // 新的连接接受时，会创建一个新的channel，注意类名ChannelInitializer
-                    @Override
-                    public void initChannel(SocketChannel ch) throws Exception {
-                        // 业务分离，server处理器
-                        ch.pipeline().addLast(serverHandler);
-                    }
-                });
+            ServerBootstrap serverBootstrap = new ServerBootstrap();
+            serverBootstrap.group(group)
+                    .channel(NioServerSocketChannel.class)
+                    .localAddress(new InetSocketAddress(port))
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                        // 新的连接接受时，会创建一个新的channel，注意类名ChannelInitializer
+                        @Override
+                        public void initChannel(SocketChannel ch) throws Exception {
+                            // 业务分离，server处理器
+                            ch.pipeline().addLast(serverHandler);
+                        }
+                    });
 
-            ChannelFuture f = b.bind().sync();
+            ChannelFuture f = serverBootstrap.bind().sync();
             System.out.println(EchoServer.class.getName() +
-                " started and listening for connections on " + f.channel().localAddress());
+                    " started and listening for connections on " + f.channel().localAddress());
             f.channel().closeFuture().sync();
         } finally {
+            // 关闭线程池，并且释放所有的资源
             group.shutdownGracefully().sync();
         }
     }

@@ -13,7 +13,7 @@ import io.netty.util.CharsetUtil;
  * @author <a href="mailto:norman.maurer@gmail.com">Norman Maurer</a>
  */
 @Sharable
-public class EchoClientHandler
+public class EchoClientChannelHandler
     extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) {

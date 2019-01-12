@@ -28,9 +28,9 @@ public class EchoClient {
         throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
-            Bootstrap b = new Bootstrap();
+            Bootstrap bootstrap = new Bootstrap();
             // 下面是建造者模式，添加属性，返回对象还是 Bootstrap
-            b.group(group)
+            bootstrap.group(group)
                 .channel(NioSocketChannel.class)
                 .remoteAddress(new InetSocketAddress(host, port))
                 .handler(new ChannelInitializer<SocketChannel>() {
@@ -38,12 +38,13 @@ public class EchoClient {
                     public void initChannel(SocketChannel ch)
                         throws Exception {
                         ch.pipeline().addLast(
-                             new EchoClientHandler());
+                             new EchoClientChannelHandler());
                     }
                 });
-            ChannelFuture f = b.connect().sync();
+            ChannelFuture f = bootstrap.connect().sync();
             f.channel().closeFuture().sync();
         } finally {
+            // 关闭线程池，并且释放所有的资源
             group.shutdownGracefully().sync();
         }
     }

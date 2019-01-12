@@ -28,7 +28,7 @@ import java.lang.annotation.Target;
 /**
  * Handles an I/O event or intercepts an I/O operation, and forwards it to its next handler in
  * its {@link ChannelPipeline}.
- *
+ * <p>
  * <h3>Sub-types</h3>
  * <p>
  * {@link ChannelHandler} itself does not provide many methods, but you usually have to implement one of its subtypes:
@@ -48,7 +48,7 @@ import java.lang.annotation.Target;
  * <p>
  * For more information, please refer to the documentation of each subtype.
  * </p>
- *
+ * <p>
  * <h3>The context object</h3>
  * <p>
  * A {@link ChannelHandler} is provided with a {@link ChannelHandlerContext}
@@ -57,9 +57,9 @@ import java.lang.annotation.Target;
  * context object, the {@link ChannelHandler} can pass events upstream or
  * downstream, modify the pipeline dynamically, or store the information
  * (using {@link AttributeKey}s) which is specific to the handler.
- *
+ * <p>
  * <h3>State management</h3>
- *
+ * <p>
  * A {@link ChannelHandler} often needs to store some stateful information.
  * The simplest and recommended approach is to use member variables:
  * <pre>
@@ -103,9 +103,9 @@ import java.lang.annotation.Target;
  * }
  *
  * </pre>
- *
+ * <p>
  * <h4>Using {@link AttributeKey}s</h4>
- *
+ * <p>
  * Although it's recommended to use member variables to store the state of a
  * handler, for some reason you might not want to create many handler instances.
  * In such a case, you can use {@link AttributeKey}s which is provided by
@@ -151,8 +151,8 @@ import java.lang.annotation.Target;
  *     }
  * }
  * </pre>
- *
- *
+ * <p>
+ * <p>
  * <h4>The {@code @Sharable} annotation</h4>
  * <p>
  * In the example above which used an {@link AttributeKey},
@@ -169,7 +169,7 @@ import java.lang.annotation.Target;
  * <p>
  * This annotation is provided for documentation purpose, just like
  * <a href="http://www.javaconcurrencyinpractice.com/annotations/doc/">the JCIP annotations</a>.
- *
+ * <p>
  * <h3>Additional resources worth reading</h3>
  * <p>
  * Please refer to the {@link ChannelHandler}, and
@@ -199,6 +199,8 @@ public interface ChannelHandler {
     void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception;
 
     /**
+     * 使用同一个实例，如果有成员变量的话，不能用此注解
+     * <p>
      * Indicates that the same instance of the annotated {@link ChannelHandler}
      * can be added to one or more {@link ChannelPipeline}s multiple times
      * without a race condition.
